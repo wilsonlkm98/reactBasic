@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "antd";
+import { Table, Input } from "antd";
 
+const { Search } = Input;
 const columns = [
   {
     title: "Post ID",
@@ -20,13 +21,15 @@ const columns = [
 ];
 
 const TableDis1 = () => {
+  const [posts, setPosts] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
   const getData = async () =>{
     try {
       let response = await fetch("https://jsonplaceholder.typicode.com/posts").then(a => a.json())
       let newData = response.map((r,i) => {
         return {...r,key:i}
       })
-      //console.log(newData);
       setPosts(newData)
     }
     catch (error) {
@@ -34,16 +37,27 @@ const TableDis1 = () => {
     }
   }
   
-  const [posts, setPosts] = useState([]);
-  useEffect(async () => {
+  useEffect(() => {
     getData()
   }, []);
 
+  const handleSearch = (value) => {
+    setSearchText(value);
+  };
+
+  const filteredData = posts.filter((item) =>
+    item.title.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
     <div>
-      <h2>Refering Ant Design to do</h2>
       <br />
-      <Table columns={columns} dataSource={posts} />
+      <Search
+        placeholder="Search by title"
+        onSearch={handleSearch}
+        style={{ width: 200, marginBottom: 16 }}
+      />
+      <Table columns={columns} dataSource={filteredData} />
     </div>
   );
 };
