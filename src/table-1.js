@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Input } from "antd";
+import axios from 'axios';
 
 const { Search } = Input;
 const columns = [
@@ -24,18 +25,18 @@ const TableDis1 = () => {
   const [posts, setPosts] = useState([]);
   const [searchText, setSearchText] = useState("");
 
-  const getData = async () =>{
+  const getData = async () => {
     try {
-      let response = await fetch("https://jsonplaceholder.typicode.com/posts").then(a => a.json())
-      let newData = response.map((r,i) => {
-        return {...r,key:i}
-      })
-      setPosts(newData)
-    }
-    catch (error) {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      const newData = response.data.map((r, i) => {
+        return { ...r, key: i };
+      });
+      
+      setPosts(newData);
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
   
   useEffect(() => {
     getData()
