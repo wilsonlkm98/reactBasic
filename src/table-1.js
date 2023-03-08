@@ -9,7 +9,7 @@ const columns = [
   },
   {
     title: "Title",
-    dataIndex: "title", 
+    dataIndex: "title",
     key: "title",
   },
   {
@@ -20,23 +20,31 @@ const columns = [
 ];
 
 const TableDis1 = () => {
+  const getData = async () =>{
+    try {
+      let response = await fetch("https://jsonplaceholder.typicode.com/posts").then(a => a.json())
+      let newData = response.map((r,i) => {
+        return {...r,key:i}
+      })
+      console.log(newData);
+      setPosts(newData)
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
   const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((data) => setPosts(data))
-      .catch((error) => console.log(error));
+  useEffect(async () => {
+    getData()
   }, []);
 
-  console.log(posts);
-
   return (
-  <div>
-    <h2>Refering Ant Design to do</h2>
-    <br/>
-    <Table columns={columns} dataSource={posts} />
-  </div>
- );
+    <div>
+      <h2>Refering Ant Design to do</h2>
+      <br />
+      <Table columns={columns} dataSource={posts} />
+    </div>
+  );
 };
 
 export default TableDis1;
