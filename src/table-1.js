@@ -26,13 +26,14 @@ const TableDis1 = () => {
       let newData = response.map((r,i) => {
         return {...r,key:i}
       })
-      console.log(newData);
+      //console.log(newData);
       setPosts(newData)
     }
     catch (error) {
       console.log(error);
     }
   }
+  
   const [posts, setPosts] = useState([]);
   useEffect(async () => {
     getData()

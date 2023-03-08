@@ -16,38 +16,12 @@ const Home = () => {
         { title: 'Ford partners with Chinese EV tech company', link: 'https://newswav.com/video/ford-partners-with-chinese-ev-tech-company-V2303_V2d9N4', author: 'Luigi', id: 5 }
     ])
 
-    const onChange = (value) => {
-        console.log('onChange: ', value);
-    };
-
-    const onAfterChange = (value) => {
-        console.log('onAfterChange: ', value);
-    };
-
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 2,
         slidesToScroll: 2
-    };
-
-    const marks = {
-        0: '0°C',
-        26: '26°C',
-        37: '37°C',
-        100: {
-          style: {
-            color: '#f50',
-          },
-          label: <strong>100°C</strong>,
-        },
-    };
-
-    const style = {
-        display: 'inline-block',
-        height: 300,
-        marginLeft: 70,
     };
   
     return (
@@ -64,34 +38,6 @@ const Home = () => {
                 </div>
                 ))}
             </Slider>
-            <br/>
-            <br/>
-            <br/>
-            <Sliderr min={0} max={100}/>
-            <p>Slider 1</p>
-            <br/>
-            <Sliderr marks={marks} included={false} defaultValue={37}/>
-            <p>Slider 2</p>
-            <br/>
-            <Sliderr
-                range
-                step={10}
-                defaultValue={[20, 50]}
-                onChange={onChange}
-                onAfterChange={onAfterChange}
-                />
-            <p>Slider 3</p>
-            <br/>
-            <br/>
-            <div style={style}>
-                <Sliderr vertical defaultValue={30} />
-            </div>
-            <p>Slider 4</p>
-            <br/>
-            <div style={style}>
-                <Sliderr vertical range step={10} defaultValue={[20, 50]} />
-            </div>
-            <p>Slider 5</p>
         </div>
     );
 }
