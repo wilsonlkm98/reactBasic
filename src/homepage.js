@@ -1,57 +1,41 @@
 import React, { useState } from "react";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
 import Navbar from "./nav";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Home = () => {
-    const [slider1Value, setSlider1Value] = useState(50);
-    const [slider2Value, setSlider2Value] = useState(25);
-    const [slider3Value, setSlider3Value] = useState(75);
-    const [slider4Value, setSlider4Value] = useState(10);
-    const [slider5Value, setSlider5Value] = useState(90);
 
-    function handleSlider1Change(newValue) {
-        setSlider1Value(newValue);
-    }
+    const [blogs, setBlogs] = useState([
+        { title: 'Khairy gives Anwar’s unity government a B- rating', link: 'https://focusmalaysia.my/khairy-gives-anwars-unity-government-a-b-rating/?utm_source=Newswav&utm_medium=Website', author: 'Jason Yeo', id: 1 },
+        { title: 'I am safe todayZahid on unconfirmed viral RoS letter', link: 'https://newswav.com/article/i-m-safe-today-zahid-on-unconfirmed-viral-ros-letter-A2303_UN05HU', author: 'Yoshi', id: 2 },
+        { title: 'Biden Speech Impediment - Apex World News', link: 'https://newswav.com/video/biden-speech-impediment-apex-world-news-V2303_iNGx81', author: 'Mario', id: 3 },
+        { title: 'GLOBALink | Experts accuse U.S. of splitting world apart', link: 'https://newswav.com/video/globalink-experts-accuse-u-s-of-splitting-world-apart-V2303_RovJAE', author: 'Ankara', id: 4 },
+        { title: 'Ford partners with Chinese EV tech company', link: 'https://newswav.com/video/ford-partners-with-chinese-ev-tech-company-V2303_V2d9N4', author: 'Luigi', id: 5 }
+    ])
 
-    function handleSlider2Change(newValue) {
-        setSlider2Value(newValue);
-    }
-
-    function handleSlider3Change(newValue) {
-        setSlider3Value(newValue);
-    }
-
-    function handleSlider4Change(newValue) {
-        setSlider4Value(newValue);
-    }
-
-    function handleSlider5Change(newValue) {
-        setSlider5Value(newValue);
-    }
-    
-    
-
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 2
+    };
+  
     return (
         <div className="home">
             <Navbar />
             <br/>
             <br/>
-            <br/>
-            <Slider min={0} max={100} value={slider1Value} onChange={handleSlider1Change} />
-            <p>Selected Value 1: {slider1Value}</p>
-            <br/>
-            <Slider min={0} max={100} value={slider2Value} onChange={handleSlider2Change} />
-            <p>Selected Value 2: {slider2Value}</p>
-            <br/>
-            <Slider min={0} max={100} value={slider3Value} onChange={handleSlider3Change} />
-            <p>Selected Value 3: {slider3Value}</p>
-            <br/>
-            <Slider min={0} max={100} value={slider4Value} onChange={handleSlider4Change} />
-            <p>Selected Value 4: {slider4Value}</p>
-            <br/>
-            <Slider min={0} max={100} value={slider5Value} onChange={handleSlider5Change} />
-            <p>Selected Value 5: {slider5Value}</p>
+            <Slider {...settings}>
+                {blogs.map(blog => (
+                <div className="blog-preview" key={blog.id} >
+                    <h2>{ blog.id }. { blog.title }</h2>
+                    <h2>Written by { blog.author }</h2>
+                    <a href = { blog.link }>Link to the source</a>
+                </div>
+                ))}
+            </Slider>
         </div>
     );
 }

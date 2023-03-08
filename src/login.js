@@ -30,6 +30,7 @@ function Login() {
 
         if(check === false){
             // Display error message if data is wrong
+            setUser("");
             alert('Invalid username or password\nYou cannot login anymore');
         }
         setIsButtonClicked(true);

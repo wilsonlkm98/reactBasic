@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Table() {
+function Table2() {
   const [items, setItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -49,4 +49,4 @@ function Table() {
   );
 }
 
-export default Table;
+export default Table2;

@@ -115,6 +115,8 @@ tr:nth-child(even) {
   border-bottom: 1px solid #fafafa;
   margin-left: 50px;
   margin-right: 50px;
+  display: inline-block;
+  vertical-align: top;
 }
 .blog-preview:hover {
   box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
@@ -127,4 +129,5 @@ tr:nth-child(even) {
 
 .home {
   margin: 30px;
+  
 }
